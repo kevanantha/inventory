@@ -4,7 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 const Form = props => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
-  <div className="row">
+  <div className="row" style={{ marginBottom: '50px' }}>
+  <div className="col s6 offset-s3">  
     <h4>Add Inventory</h4>
     <form onSubmit={handleSubmit}>
         <div>
@@ -61,6 +62,7 @@ const Form = props => {
         </div>
       </form>
     </div>
+  </div>
   )
 }
 export default reduxForm({
