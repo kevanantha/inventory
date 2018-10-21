@@ -9,6 +9,7 @@ const Navbar = () => {
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><Link to='/signin'>Sign In</Link></li>
           <li><Link to='/signup'>Sign Up</Link></li>
+          <li><Link to='/' className='btn btn-floating pink lighten-1'>KA</Link></li>
         </ul>
       </div>
     </nav>
