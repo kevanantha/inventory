@@ -12,14 +12,17 @@ const ItemTable = (props) => {
   }
 
   const ItemTableList = items.length ? (
-    <table className="striped centered">
+    <table className="table table-striped">
       <thead>
         <tr>
           <th>No.</th>
           <th>Item ID</th>
+          <th>Owner</th>
           <th>Item Name</th>
+          <th>Price</th>
           <th>Quantity</th>
           <th>Type</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +31,9 @@ const ItemTable = (props) => {
           <tr key={item.itemId}>
             <td>{index + 1}</td>
             <td>{item.itemId}</td>
+            <td>{item.owner}</td>
             <td>{item.name}</td>
+            <td>Rp {item.price},00</td>
             <td>{item.qty}</td>
             <td>{item.type}</td>
             <td>
@@ -41,13 +46,12 @@ const ItemTable = (props) => {
         </tbody>
       </table>
     ) : (
-      <h6 className="center"><i>Oops! Looks like you don't have any inventory.</i><br />Please, input some!</h6>
+      <h6 className="text-center"><i>Oops! Looks like you don't have any inventory.</i><br />Please, input some!</h6>
     )
-
 
   return (
     <>
-      <h4 className='center'>Your Inventory</h4>
+      <h4 className='text-center'>Your Inventory</h4>
       { ItemTableList }
     </>
   )

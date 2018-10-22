@@ -1,70 +1,128 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-const Form = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
-  return (
-  <div className="row" style={{ marginBottom: '50px' }}>
-  <div className="col s6 offset-s3">  
-    <h4>Add Inventory</h4>
-    <form onSubmit={handleSubmit}>
-        <div>
-          <span>Item ID</span>
-          <div>
-            <Field
-              name="itemId"
-              component="input"
-              type="text"
-              placeholder="14045"
-            />
+class Form extends Component {
+  componentDidMount() {
+  }
+
+  render() {
+    const { handleSubmit, pristine, reset, submitting } = this.props
+
+    // == Validation == //
+    const required = props => (props || typeof props === 'number' ? undefined : 'Required')
+    console.log(required())
+
+    // == Forms == //
+    const nameField = props => {
+      return (
+      <>
+        <div className="form-group col-md-6">
+          <label htmlFor="name">Item Name</label>
+          <input {...props.input} type="text" className="form-control" id="name" placeholder="Item Name" />
+        </div>
+      </>
+      )
+    }
+
+    const ownerField = props => {
+      return (
+      <>
+        <div className="form-group col-md-6">
+          <label htmlFor="owner">Owner</label>
+          <input {...props.input} type="text" className="form-control" id="owner" placeholder="Owner" />
+        </div>
+      </>
+      )
+    }
+
+    const itemIdField = props => {
+      return (
+        <>
+          <div className="form-group col-md-4">
+            <label htmlFor="itemId">Item Id</label>
+            <input {...props.input} type="itemId" className="form-control" id="itemId" placeholder="Item Id" />
+          </div>
+        </>
+      )
+    }
+
+    const typeField = props => {
+      return (
+        <>
+          <div className="form-group col-md-4">
+            <label htmlFor="type">Type</label>
+            <select {...props.input} id="type" className="form-control">
+              <option selected>Choose type</option>
+              <option>Software</option>
+              <option>Hardware</option>
+            </select>
+          </div>
+        </>
+      )
+    }
+
+    const priceField = props => {
+      return (
+        <>
+        <div clasName="form-group col-md-4">
+          <label htmlFor="type">Price</label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Rp</span>
+            </div>
+            <input {...props.input} type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
+            <div className="input-group-append">
+              <span className="input-group-text">,00</span>
+            </div>
           </div>
         </div>
-        <div>
-          <span>Item Name</span>
+        </>
+      )
+    }
+
+    const qtyField = props => {
+      return (
+        <>
           <div>
-            <Field
-              name="name"
-              component="input"
-              type="text"
-              placeholder="Flashdisk"
-            />
+            <label htmlFor="example-number-input" className="col-2 col-form-label">Quantity</label>
+            <div className="col-10">
+              <input {...props.input} className="form-control" type="number" defaultValue={0} id="example-number-input" />
+            </div>
           </div>
-        </div>
-        <div>
-          <span>Quantity</span>
-          <div>
-            <Field
-              name="qty"
-              component="input"
-              type="text"
-              placeholder="21"
-            />
+        </>
+      )
+    }
+
+    return (
+    <div className="row" style={{ marginBottom: '50px', marginTop: '25px' }}>
+    <div className="col-md-12"> 
+      <h4>Add Inventory</h4>
+      <form onSubmit={handleSubmit}>
+          <div className='row'>
+            <Field name="name" component={nameField} />
+            <Field name="owner" component={ownerField} />
           </div>
-        </div>
-        <div>
-          <span>Type</span>
-          <div>
-            <Field
-              name="type"
-              component="input"
-              type="text"
-              placeholder="Hardware"
-            />
+          <div className='row'>
+            <Field name="type" component={typeField} />
+            <Field name="price" component={priceField} />
+            <Field name="itemId" component={itemIdField} />
+            <Field name="qty" component={qtyField} />
           </div>
-        </div>
-        <div className='right' style={{ marginTop: '10px' }}>
-          <button style={{ marginRight: "15px" }} type="submit" className="btn waves-effect waves-light" disabled={pristine || submitting}>
-            Add Inventory
-          </button>
-          <button type="button" className="btn waves-effect red" disabled={pristine || submitting} onClick={reset}>
-            Clear Values
-          </button>
-        </div>
-      </form>
+          <div className='text-right' style={{ marginTop: '10px' }}>
+            <button style={{ marginRight: "15px" }} type="submit" className="btn btn-success">
+              Add Inventory
+            </button>
+            <button type="button" className="btn btn-danger" disabled={pristine || submitting} onClick={reset}>
+              Clear Values
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-  )
+    )
+  }
 }
+
 export default reduxForm({
   form: "item",
 })(Form);

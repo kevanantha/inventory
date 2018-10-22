@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^2.0.1",
+    "jquery": "^3.3.1",
+    "materialize-css": "^1.0.0-rc.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
@@ -13,6 +16,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -20,6 +25,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "homepage": "https://react-inventory.github.io",
   "browserslist": [
     ">0.2%",
     "not dead",
