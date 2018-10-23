@@ -16,10 +16,11 @@ class Dashboard extends Component {
     this.onAddItem = value => {
       this.props.Item.create(value)
       this.props.Form.change("item", "itemId", "")
+      this.props.Form.change("item", "owner", "")
+      this.props.Form.change("item", "price", "")
       this.props.Form.change("item", "name", "")
       this.props.Form.change("item", "qty", "")
-      this.props.Form.change("item", "type", "")
-      alert("item created")
+      //alert("item created")
     }
   }
 
