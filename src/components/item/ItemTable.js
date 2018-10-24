@@ -37,7 +37,7 @@ const ItemTable = (props) => {
             <td>{item.qty}</td>
             <td>{item.type}</td>
             <td>
-              <i className="material-icons" style={{ marginRight: '12px', cursor: 'pointer' }}>edit</i>
+              <i className="material-icons" style={{ marginRight: '12px', cursor: 'pointer' }} onClick={() => props.onEdit(item)}>edit</i>
               <i className="material-icons" style={{ cursor: 'pointer' }} onClick={() => handleDelete(item.itemId)}>delete</i>
             </td>
           </tr>

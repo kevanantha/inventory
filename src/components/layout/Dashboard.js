@@ -12,25 +12,41 @@ import ItemTable from '../item/ItemTable';
 class Dashboard extends Component {
   constructor(props) {
     super(props)
+    
+    this.state = {
+      item: null
+    }
 
     this.onAddItem = value => {
       this.props.Item.create(value)
       this.props.Form.change("item", "itemId", "")
       this.props.Form.change("item", "owner", "")
+      this.props.Form.change("item", "type", "")
       this.props.Form.change("item", "price", "")
       this.props.Form.change("item", "name", "")
       this.props.Form.change("item", "qty", "")
       //alert("item created")
     }
+
+    this.handleEdit = item => {
+      this.setState({ item: item })
+    } 
+
   }
 
   render() {
     return (
       <div>
-        <Form onSubmit={this.onAddItem} />
-        <ItemTable />
+        <Form onSubmit={this.onAddItem} item={this.state} />
+        <ItemTable onEdit={this.handleEdit}/>
       </div>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    items: state.items
   }
 }
 
@@ -41,4 +57,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Dashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
