@@ -14,7 +14,7 @@ class Dashboard extends Component {
     super(props)
     
     this.state = {
-      item: null
+      item: ""
     }
 
     this.onAddItem = value => {
@@ -32,12 +32,16 @@ class Dashboard extends Component {
       this.setState({ item: item })
     } 
 
+    this.handleCancel = () => {
+      this.setState({ item: "" })
+    }
+
   }
 
   render() {
     return (
       <div>
-        <Form onSubmit={this.onAddItem} item={this.state} />
+        <Form onSubmit={this.onAddItem} item={this.state} onCancel={this.handleCancel} />
         <ItemTable onEdit={this.handleEdit}/>
       </div>
     )
