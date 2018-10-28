@@ -11,28 +11,29 @@ const itemReducer = (state = initState, action) => {
   }
 
   if (action.type === "ITEM/CREATE") {
-    let maxId;
-    for (let item of state.items) {
-      if (!maxId || item.id > maxId) {
-        maxId = item.id
-      }
-    }
     const newItem = action.payload
-    newItem.id = maxId + 1
     const items = [ ...state.items, newItem ]
 
     return { ...state, items }
+  }
+
+  if (action.type === "LOAD_ITEM_ON_TABLE") {
+    console.log(action.item)
+    return { item: action.item }
   }
 
   if (action.type === "DELETE_ITEM_ON_TABLE") {
     let newItem = state.items.filter(item => {
       return action.itemId !== item.itemId
     })
-      //console.log(action.ItemId, items.itemId)
     return {
       ...state,
       items: newItem
     }
+  }
+
+  if (action.type === "UPDATE_ITEM_ON_TABLE") {
+    console.log(action.item)
   }
 
   return state;

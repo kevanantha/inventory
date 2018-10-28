@@ -5,18 +5,16 @@ import { connect } from 'react-redux';
 import * as itemActions from '../../actions/itemActions';
 import * as formActions from '../../actions/formActions';
 
-
 import Form from '../form/Form';
 import ItemTable from '../item/ItemTable';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props)
-    
     this.state = {
-      item: ""
+      item: {}
     }
-
+    
     this.onAddItem = value => {
       this.props.Item.create(value)
       this.props.Form.change("item", "itemId", "")
@@ -25,15 +23,17 @@ class Dashboard extends Component {
       this.props.Form.change("item", "price", "")
       this.props.Form.change("item", "name", "")
       this.props.Form.change("item", "qty", "")
-      //alert("item created")
+      alert("item created")
     }
 
     this.handleEdit = item => {
-      this.setState({ item: item })
-    } 
+      this.props.Form.loadItemForForm("item", item)
+      this.setState({ item: {item} })
+      console.log(this.state.item)
+    }
 
-    this.handleCancel = () => {
-      this.setState({ item: "" })
+    this.handleUpdate = item => {
+      this.props.Item.updateItemOnTable(item)
     }
 
   }
@@ -41,8 +41,17 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.onAddItem} item={this.state} onCancel={this.handleCancel} />
-        <ItemTable onEdit={this.handleEdit}/>
+        <Form
+          itemState={this.state.item}
+          onSubmit={this.onAddItem}
+          onUpdate={this.handleUpdate}
+          onCancel={this.handleCancel}
+          onEdit={this.handleEdit}
+        />
+        <ItemTable
+          onEdit={this.handleEdit}
+          onUpdate={this.handleUpdate}
+        />
       </div>
     )
   }

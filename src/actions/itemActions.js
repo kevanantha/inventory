@@ -17,3 +17,10 @@ export const deleteItemOnTable = (itemId) => {
     itemId
   }
 }
+
+export const updateItemOnTable = (item) => {
+  return {
+    type: "UPDATE_ITEM_ON_TABLE",
+    item
+  }
+}
