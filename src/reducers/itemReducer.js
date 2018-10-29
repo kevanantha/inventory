@@ -1,7 +1,7 @@
 const initState = {
   items: [
-    { itemId: "21", owner: "Timothy", price: 1000, name: "SSD", qty: 20, type: 'Hardware'},
-    { itemId: "372", owner: "Kanantha", price: 5000, name: "Flashdisk", qty: 10, type: 'Hardware'},
+    //{ itemId: "21", owner: "Timothy", price: 1000, name: "SSD", qty: 20, type: 'Hardware'},
+    //{ itemId: "372", owner: "Kanantha", price: 5000, name: "Flashdisk", qty: 10, type: 'Hardware'},
   ]
 };
 
