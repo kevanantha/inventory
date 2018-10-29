@@ -1,7 +1,7 @@
 const initState = {
   items: [
-    { itemId: 21, owner: "Timothy", price: 1000, name: "SSD", qty: 20, type: 'Hardware'},
-    { itemId: 372, owner: "Kanantha", price: 5000, name: "Flashdisk", qty: 10, type: 'Hardware'},
+    { itemId: "21", owner: "Timothy", price: 1000, name: "SSD", qty: 20, type: 'Hardware'},
+    { itemId: "372", owner: "Kanantha", price: 5000, name: "Flashdisk", qty: 10, type: 'Hardware'},
   ]
 };
 
@@ -33,13 +33,14 @@ const itemReducer = (state = initState, action) => {
 
   if (action.type === "UPDATE_ITEM_ON_TABLE") {
     let itemId = state.items.filter(item => {
-      return action.payloaditem.itemId === item.itemId
+      return action.payload.item.itemId === item.itemId
     })
-    console.log('itemId', itemId)
-    let newItem = itemId = action.payload.item
-    console.log('newItem', newItem)
-    console.log('stateItem', ...state.items)
-    console.log(state)
+
+    const updatedItem = itemId = [action.payload.item]
+
+    let newItem = state.items.filter(item => {
+      return action.payload.item.itemId !== item.itemId
+    }).concat(updatedItem)
 
     return {...state, items: newItem}
   }

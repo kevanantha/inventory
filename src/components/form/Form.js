@@ -113,7 +113,7 @@ let Form = (props) => {
           <div className='text-right' style={{ marginTop: '10px' }}>
             { props.itemState.item ? (
             <>
-              <button style={{ marginRight: "15px" }} type="submit" className="btn btn-success">
+              <button style={{ marginRight: "15px" }} type="submit" className="btn btn-success" onSubmit={() => onUpdate()}>
                 Save Changes
               </button>
               <button type="button" className="btn btn-danger" onClick={() => props.onCancel()}>
