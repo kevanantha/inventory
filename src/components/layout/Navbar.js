@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link to='/signin' className="nav-link">Sign In</Link>
           </li>
           <li className="nav-item">
-            <Link to='/signout' className="nav-link">Sign Out</Link>
+            <Link to='/signup' className="nav-link">Sign Up</Link>
           </li>
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
