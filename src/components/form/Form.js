@@ -93,13 +93,12 @@ const qtyField = ({ input, label, type, meta: { touched, error, warning} }) => {
 }
 
 let Form = (props) => {
-  const { handleSubmit, reset } = props
-  console.log(props)
+  const { handleSubmit, onUpdate } = props
 
   return (
     <div className="row" style={{ marginBottom: '50px', marginTop: '25px' }}>
-    <div className="col-md-12"> 
-      <h4>Add Inventory</h4>
+    <div className="col-md-12">
+      { props.itemState.item ? <h4>Edit Inventory</h4> : <h4>Add Inventory</h4> }
       <form onSubmit={handleSubmit}>
           <div className='row'>
             <Field name="name" component={nameField} />
@@ -112,15 +111,23 @@ let Form = (props) => {
             <Field name="qty" component={qtyField} />
           </div>
           <div className='text-right' style={{ marginTop: '10px' }}>
-            <button style={{ marginRight: "15px" }} type="submit" className="btn btn-success" onClick={props.onUpdate(props.itemState.item)}>
-              Save Changes
-            </button>
-            <button style={{ marginRight: "15px" }} type="submit" className="btn btn-success">
-              Add Inventory
-            </button>
-            <button type="button" className="btn btn-danger" onClick={reset}>
-              Clear Values
-            </button>
+            { props.itemState.item ? (
+            <>
+              <button style={{ marginRight: "15px" }} type="submit" className="btn btn-success">
+                Save Changes
+              </button>
+              <button type="button" className="btn btn-danger" onClick={() => props.onCancel()}>
+                Cancel
+              </button>
+              </>
+            ) : (
+            <>
+              <button style={{ marginRight: "15px" }} type="submit" className="btn btn-success">
+                Add Inventory
+              </button>
+              </>
+            )
+            }
           </div>
         </form>
       </div>

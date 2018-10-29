@@ -12,11 +12,12 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      item: {}
+      itemId: "",
+      item: ""
     }
     
-    this.onAddItem = value => {
-      this.props.Item.create(value)
+    this.onAddItem = item => {
+      this.props.Item.create(item)
       this.props.Form.change("item", "itemId", "")
       this.props.Form.change("item", "owner", "")
       this.props.Form.change("item", "type", "")
@@ -28,22 +29,36 @@ class Dashboard extends Component {
 
     this.handleEdit = item => {
       this.props.Form.loadItemForForm("item", item)
-      this.setState({ item: {item} })
-      console.log(this.state.item)
+      this.setState({
+        itemId: item.itemId,
+        item: {item}
+      })
     }
 
-    this.handleUpdate = item => {
-      this.props.Item.updateItemOnTable(item)
+    this.handleCancel = () => {
+      this.setState({ item: ""})
+      this.props.Form.change("item", "itemId", "")
+      this.props.Form.change("item", "owner", "")
+      this.props.Form.change("item", "type", "")
+      this.props.Form.change("item", "price", "")
+      this.props.Form.change("item", "name", "")
+      this.props.Form.change("item", "qty", "")
+    }
+
+    this.handleUpdate = (itemId, item) => {
+      this.props.Item.updateItemOnTable(itemId, item)
+      //this.setState({ item: {item} })
     }
 
   }
 
   render() {
+    const checkSubmit = () => this.state.item ? (this.handleUpdate) : (this.onAddItem)
     return (
       <div>
         <Form
           itemState={this.state.item}
-          onSubmit={this.onAddItem}
+          onSubmit={checkSubmit()}
           onUpdate={this.handleUpdate}
           onCancel={this.handleCancel}
           onEdit={this.handleEdit}

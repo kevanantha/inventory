@@ -13,7 +13,6 @@ const itemReducer = (state = initState, action) => {
   if (action.type === "ITEM/CREATE") {
     const newItem = action.payload
     const items = [ ...state.items, newItem ]
-
     return { ...state, items }
   }
 
@@ -33,7 +32,16 @@ const itemReducer = (state = initState, action) => {
   }
 
   if (action.type === "UPDATE_ITEM_ON_TABLE") {
-    console.log(action.item)
+    let itemId = state.items.filter(item => {
+      return action.payloaditem.itemId === item.itemId
+    })
+    console.log('itemId', itemId)
+    let newItem = itemId = action.payload.item
+    console.log('newItem', newItem)
+    console.log('stateItem', ...state.items)
+    console.log(state)
+
+    return {...state, items: newItem}
   }
 
   return state;

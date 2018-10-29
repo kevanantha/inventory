@@ -18,9 +18,9 @@ export const deleteItemOnTable = (itemId) => {
   }
 }
 
-export const updateItemOnTable = (item) => {
+export const updateItemOnTable = (item, itemId) => {
   return {
     type: "UPDATE_ITEM_ON_TABLE",
-    item
+    payload: {item, itemId}
   }
 }
