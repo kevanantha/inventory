@@ -94,12 +94,11 @@ const qtyField = ({ input, label, type, meta: { touched, error, warning} }) => {
 
 let Form = (props) => {
   const { handleSubmit, onUpdate } = props
-
   return (
     <div className="row" style={{ marginBottom: '50px', marginTop: '25px' }}>
-    <div className="col-md-12">
-      { props.itemState.item ? <h4>Edit Inventory</h4> : <h4>Add Inventory</h4> }
-      <form onSubmit={handleSubmit}>
+      <div className="col-md-12">
+      { props.editedItem ? <h4>Edit Inventory</h4> : <h4>Add Inventory</h4> }
+        <form onSubmit={handleSubmit}>
           <div className='row'>
             <Field name="name" component={nameField} />
             <Field name="owner" component={ownerField} />
@@ -111,7 +110,7 @@ let Form = (props) => {
             <Field name="qty" component={qtyField} />
           </div>
           <div className='text-right' style={{ marginTop: '10px' }}>
-            { props.itemState.item ? (
+            { props.editedItem ? (
             <>
               <button style={{ marginRight: "15px" }} type="submit" className="btn btn-success" onSubmit={() => onUpdate()}>
                 Save Changes
@@ -147,4 +146,3 @@ export default reduxForm({
   form: "item",
   //validate
 })(Form);
-

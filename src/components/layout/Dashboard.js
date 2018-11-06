@@ -12,60 +12,62 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      itemId: "",
-      item: ""
+      isAdd: false,
+      editedItem: null
     }
-    
+
     this.onAddItem = item => {
-      this.props.Item.create(item)
-      this.props.Form.change("item", "itemId", "")
-      this.props.Form.change("item", "owner", "")
-      this.props.Form.change("item", "type", "")
-      this.props.Form.change("item", "price", "")
-      this.props.Form.change("item", "name", "")
-      this.props.Form.change("item", "qty", "")
-      alert("item created")
+      this.props.Item.create(item);
+      this.props.Form.change("item", "itemId", "");
+      this.props.Form.change("item", "owner", "");
+      this.props.Form.change("item", "type", "");
+      this.props.Form.change("item", "price", "");
+      this.props.Form.change("item", "name", "");
+      this.props.Form.change("item", "qty", "");
+      alert("item created");
     }
 
-    this.handleEdit = item => {
-      this.props.Form.loadItemForForm("item", item)
-      this.setState({
-        itemId: item.itemId,
-        item: {item}
-      })
+    this.onEdit = editedItem => e => {
+      e.preventDefault();
+      this.setState({ editedItem });
+      const values = {...editedItem};
+      this.props.Form.init("item", values);
     }
 
-    this.handleCancel = () => {
-      this.setState({ item: ""})
-      this.props.Form.change("item", "itemId", "")
-      this.props.Form.change("item", "owner", "")
-      this.props.Form.change("item", "type", "")
-      this.props.Form.change("item", "price", "")
-      this.props.Form.change("item", "name", "")
-      this.props.Form.change("item", "qty", "")
+    this.onCancelEdit = () => {
+      this.setState({ editedItem: null});
+      this.props.Form.change("item", "itemId", "");
+      this.props.Form.change("item", "owner", "");
+      this.props.Form.change("item", "type", "");
+      this.props.Form.change("item", "price", "");
+      this.props.Form.change("item", "name", "");
+      this.props.Form.change("item", "qty", "");
     }
 
-    this.handleUpdate = (itemId, item) => {
-      this.props.Item.updateItemOnTable(itemId, item)
-      //this.setState({ item: {item} })
+    this.onCommitEdit = (values) => {
+      const { editedItem } = this.state;
+      const { itemId } = editedItem;
+      this.props.Item.updateItemOnTable(itemId, values);
+      alert("updated")
+      this.onCancelEdit();
     }
 
   }
 
   render() {
-    const checkSubmit = () => this.state.item ? (this.handleUpdate) : (this.onAddItem)
+    const checkSubmit = () => this.state.editedItem ? (this.onCommitEdit) : (this.onAddItem);
     return (
       <div>
         <Form
-          itemState={this.state.item}
+          editedItem={this.state.editedItem}
           onSubmit={checkSubmit()}
-          onUpdate={this.handleUpdate}
-          onCancel={this.handleCancel}
-          onEdit={this.handleEdit}
+          onUpdate={this.onCommitEdit}
+          onCancel={this.onCancelEdit}
+          onEdit={this.onEdit}
         />
         <ItemTable
-          onEdit={this.handleEdit}
-          onUpdate={this.handleUpdate}
+          onEdit={this.onEdit}
+          onUpdate={this.onCommitEdit}
         />
       </div>
     )

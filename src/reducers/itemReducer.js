@@ -32,17 +32,18 @@ const itemReducer = (state = initState, action) => {
   }
 
   if (action.type === "UPDATE_ITEM_ON_TABLE") {
-    let itemId = state.items.filter(item => {
-      return action.payload.item.itemId === item.itemId
-    })
+    const { meta: { id } } = action;
+    const editedItem = action.payload;
+    const items = [...state.items];
 
-    const updatedItem = itemId = [action.payload.item]
-
-    let newItem = state.items.filter(item => {
-      return action.payload.item.itemId !== item.itemId
-    }).concat(updatedItem)
-
-    return {...state, items: newItem}
+    for (let index in items) {
+      const item = items[index];
+      if (item.itemId === id) {
+        items[index] = editedItem;
+        break;
+      }
+    }
+    return {...state, items}
   }
 
   return state;
