@@ -146,5 +146,4 @@ const mapDispatchToProps = dispatch => {
 Form = connect(null, mapDispatchToProps)(Form)
 export default reduxForm({
   form: "item",
-  //validate
 })(Form);
