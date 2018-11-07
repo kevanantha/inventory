@@ -69,7 +69,7 @@ const priceField = ({ input, label, type, meta: { touched, error, warning} }) =>
         <div className="input-group-prepend">
           <span className="input-group-text">Rp</span>
         </div>
-        <input {...input} type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
+        <input {...input} type="text" placeholder='Price' className="form-control" aria-label="Amount (to the nearest dollar)" />
       </div>
       {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
@@ -83,7 +83,7 @@ const qtyField = ({ input, label, type, meta: { touched, error, warning} }) => {
       <div>
         <label htmlFor="example-number-input" className="col-2 col-form-label">Quantity</label>
         <div className="col-10">
-          <input {...input} className="form-control" type="number" id="example-number-input" />
+          <input {...input} placeholder='Quantity' className="form-control" type="number" id="example-number-input" />
           {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
         </div>
       </div>
