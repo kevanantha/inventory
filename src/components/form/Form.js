@@ -1,7 +1,9 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import TagsFieldArray from './TagsFieldArray';
 
 import * as itemActions from '../../actions/itemActions';
 import * as formActions from '../../actions/formActions';
@@ -108,6 +110,9 @@ let Form = (props) => {
             <Field name="price" component={priceField} />
             <Field name="itemId" component={itemIdField} />
             <Field name="qty" component={qtyField} />
+          </div>
+          <div className='row'>
+            <FieldArray name='tags' component={TagsFieldArray} />
           </div>
           <div className='text-right' style={{ marginTop: '10px' }}>
             { props.editedItem ? (

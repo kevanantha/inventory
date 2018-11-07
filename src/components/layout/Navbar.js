@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-          //<li><Link to='/signin'>Sign In</Link></li>
-          //<li><Link to='/signup'>Sign Up</Link></li>
-          //<li><Link to='/' className='btn btn-floating pink lighten-1'>KA</Link></li>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link to='/' className="navbar-brand">Inventory</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,13 +11,13 @@ const Navbar = () => {
       <div id="navbarNavDropdown" className="navbar-collapse collapse">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
+            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">Features</a>
+            <a className="nav-link" href="#">Features</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">Pricing</a>
+            <a className="nav-link" href="#">Pricing</a>
           </li>
         </ul>
         <ul className="navbar-nav">
@@ -35,8 +32,8 @@ const Navbar = () => {
               Kevin Anantha
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a className="dropdown-item" href="/">Profile</a>
-              <a className="dropdown-item" href="/">Settings</a>
+              <a className="dropdown-item" href="#">Profile</a>
+              <a className="dropdown-item" href="#">Settings</a>
             </div>
           </li>
         </ul>
