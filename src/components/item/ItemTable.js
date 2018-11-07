@@ -15,30 +15,39 @@ const ItemTable = (props) => {
     <table className="table table-striped">
       <thead>
         <tr>
-          <th>No.</th>
-          <th>Item ID</th>
-          <th>Owner</th>
-          <th>Item Name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Type</th>
-          <th></th>
+        <th>No.</th>
+        <th>Item ID</th>
+        <th>Owner</th>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Type</th>
+        <th>Tags</th>
+        <th></th>
         </tr>
       </thead>
       <tbody>
       {items.map((item, index) => {
+        console.log(item.tags)
         return (
           <tr key={item.itemId}>
-            <td>{index + 1}</td>
-            <td>{item.itemId}</td>
-            <td>{item.owner}</td>
-            <td>{item.name}</td>
-            <td>Rp {item.price},00</td>
-            <td>{item.qty}</td>
-            <td>{item.type}</td>
-            <td>
-              <i className="material-icons" style={{ marginRight: '12px', cursor: 'pointer' }} onClick={props.onEdit(item)}>edit</i>
-              <i className="material-icons" style={{ cursor: 'pointer' }} onClick={() => handleDelete(item.itemId)}>delete</i>
+            <td className='align-middle'>{index + 1}</td>
+            <td className='align-middle'>{item.itemId}</td>
+            <td className='align-middle'>{item.owner}</td>
+            <td className='align-middle'>{item.name}</td>
+            <td className='align-middle'>Rp {item.price}</td>
+            <td className='align-middle'>{item.qty}</td>
+            <td className='align-middle'>{item.type}</td>
+            <td className='align-middle'>
+              {item.tags.map((tag, index) => (
+                <div key={index} className='align-middle'>
+                  {tag}
+                </div>
+              ))}
+            </td>
+            <td className='align-middle'>
+            <i className="material-icons" style={{ marginRight: '12px', cursor: 'pointer' }} onClick={props.onEdit(item)}>edit</i>
+            <i className="material-icons" style={{ cursor: 'pointer' }} onClick={() => handleDelete(item.itemId)}>delete</i>
             </td>
           </tr>
           )

@@ -35,7 +35,7 @@ class Dashboard extends Component {
       this.props.Form.init("item", values);
     }
 
-    this.onCancelEdit = () => {
+    this.onCancelEdit = (editedItem) => {
       this.setState({ editedItem: null});
       this.props.Form.change("item", "itemId", "");
       this.props.Form.change("item", "owner", "");
@@ -43,6 +43,7 @@ class Dashboard extends Component {
       this.props.Form.change("item", "price", "");
       this.props.Form.change("item", "name", "");
       this.props.Form.change("item", "qty", "");
+      this.props.Form.change("item", "tags", "");
     }
 
     this.onCommitEdit = (values) => {

@@ -36,7 +36,7 @@ const ownerField = ({ input, label, type, meta: { touched, error, warning} }) =>
 const itemIdField = ({ input, label, type, meta: { touched, error, warning} }) => {
   return (
     <>
-      <div className="form-group col-md-4">
+      <div className="form-group col-md-4" style={{marginBottom: 0}}>
         <label htmlFor="itemId">Item Id</label>
         <input {...input} type="itemId" className="form-control" id="itemId" placeholder="Item Id" />
         {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
@@ -48,7 +48,7 @@ const itemIdField = ({ input, label, type, meta: { touched, error, warning} }) =
 const typeField = ({ input, label, type, meta: { touched, error, warning} }) => {
   return (
     <>
-      <div className="form-group col-md-4">
+      <div className="form-group col-md-4" style={{marginBottom: 0}}>
         <label htmlFor="type">Type</label>
         <select {...input} id="type" className="form-control">
           <option defaultValue='Software'>Software</option>
@@ -63,16 +63,13 @@ const typeField = ({ input, label, type, meta: { touched, error, warning} }) => 
 const priceField = ({ input, label, type, meta: { touched, error, warning} }) => {
   return (
     <>
-    <div className="form-group col-md-4">
+    <div className="form-group col-md-4" style={{marginBottom: 0}}>
       <label htmlFor="type">Price</label>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Rp</span>
         </div>
         <input {...input} type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
-        <div className="input-group-append">
-          <span className="input-group-text">,00</span>
-        </div>
       </div>
       {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
@@ -105,7 +102,7 @@ let Form = (props) => {
             <Field name="name" component={nameField} />
             <Field name="owner" component={ownerField} />
           </div>
-          <div className='row'>
+          <div className='row' style={{marginBottom: 20}}>
             <Field name="type" component={typeField} />
             <Field name="price" component={priceField} />
             <Field name="itemId" component={itemIdField} />
