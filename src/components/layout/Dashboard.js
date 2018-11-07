@@ -25,7 +25,6 @@ class Dashboard extends Component {
       this.props.Form.change("item", "name", "");
       this.props.Form.change("item", "qty", "");
       alert("item created");
-      console.log(item);
     }
 
     this.onEdit = editedItem => e => {

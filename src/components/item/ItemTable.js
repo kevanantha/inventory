@@ -28,7 +28,6 @@ const ItemTable = (props) => {
       </thead>
       <tbody>
       {items.map((item, index) => {
-        console.log(item.tags)
         return (
           <tr key={item.itemId}>
             <td className='align-middle'>{index + 1}</td>
