@@ -24,6 +24,7 @@ class Dashboard extends Component {
       this.props.Form.change("item", "price", "");
       this.props.Form.change("item", "name", "");
       this.props.Form.change("item", "qty", "");
+      this.props.Form.change("item", "tags", "");
       alert("item created");
     }
 
