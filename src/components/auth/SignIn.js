@@ -60,7 +60,8 @@ class SignIn extends Component {
                   </button>
                   <button
                     className="btn btn-lg btn-facebook btn-block text-uppercase"
-                    type="submit">
+                    type="submit"
+                  >
                     <i className="fab fa-facebook-f mr-2" /> Sign in with Facebook
                   </button>
                 </form>
